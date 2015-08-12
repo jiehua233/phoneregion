@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+该脚本作用:
+    遍历手机号码前7位,抓取ip138的数据
+"""
+
 import requests
 import torndb
 from bs4 import BeautifulSoup
