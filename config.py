@@ -10,7 +10,7 @@ INFOBRIGHT = {
 }
 
 SCRAPY = {
-    "thread_num": 10,
+    "thread_num": 100,
 }
 
 SERVER = {
