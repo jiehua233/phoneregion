@@ -17,3 +17,11 @@ SERVER = {
     "host": "127.0.0.1",
     "port": 9999,
 }
+
+"""Gunicorn setting"""
+bind = "127.0.0.1:9999"
+workers = 1
+worker_class = "gevent"
+accesslog = "-"     # log to stderr
+errorlog = "-"      # log to stderr
+loglevel = "info"

@@ -5,7 +5,6 @@ gevent==1.0.2
 greenlet==0.4.9
 html5lib==0.9999999
 MySQL-python==1.2.5
-python-mimeparse==0.1.4
 requests==2.9.1
-six==1.10.0
-wheel==0.24.0
+gunicorn==19.4.5
+ujson==1.34
