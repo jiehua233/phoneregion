@@ -6,7 +6,6 @@
 #
 
 import sys
-import logging
 import requests
 import gevent
 from gevent import monkey; monkey.patch_all()
@@ -52,7 +51,7 @@ class Scrapy:
     def worker(self, phone_list):
         while len(phone_list) > 0:
             phone = phone_list.pop()
-            print "validating: ", phone
+            print len(phone_list),"validating: ", phone
             info = self.validate(phone)
             if info is not None:
                 print phone, 'is ok.'
@@ -78,8 +77,7 @@ class Scrapy:
             return result
 
         except Exception as e:
+            print e
             pass
 
         return None
-
-
