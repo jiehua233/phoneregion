@@ -18,6 +18,12 @@ SERVER = {
     "port": 9999,
 }
 
+STATSD = {
+    "host": "127.0.0.1",
+    "port": 8125,
+    "prefix": "api.phonenum",
+}
+
 """Gunicorn setting"""
 bind = "127.0.0.1:9999"
 workers = 1
