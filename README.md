@@ -1,16 +1,19 @@
-## 手机号码归属地查询
+# 手机号码归属地查询
 
-### 使用方法
+## 使用方法
 
-```sql
-CREATE DATABASE IF NOT EXISTS `phonenum` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `phonenum`;
-```
+使用默认的数据导入MySQL：
 
-### 数据来源
+    python main.py --loaddb
+
+抓取更新数据:
+
+    python main.py --scrapy
+
+## 数据来源
 
 <http://www.ip138.com>
 
-### 原理
+## 原理
 
 遍历各个手机号码段(前7位)
