@@ -11,11 +11,11 @@ import torndb
 import falcon
 import ujson as json
 from wsgiref import simple_server
-from statsd import StatsClient
+from etc import config
 
-import config
 
-statsd = StatsClient(**config.STATSD)
+db = torndb.Connection(**config.MYSQL)
+
 
 def validate_phonenum(req, resp, resource, params):
     phonenum = params.get('phonenum')
@@ -31,15 +31,9 @@ def validate_phonenum(req, resp, resource, params):
 
 class PhoneResource(object):
 
-    def __init__(self, ib):
-        self.ib = torndb.Connection(**ib)
-
-    @statsd.timer("request")
     @falcon.before(validate_phonenum)
     def on_get(self, req, resp, phonenum):
-        statsd.incr("query")
-        with statsd.timer("sql_query"):
-            info = self.ib.get('SELECT * FROM phonenum WHERE phone = %s', phonenum)
+        info = db.get("SELECT * FROM `phonenum` WHERE phone = %s", phonenum)
 
         if info is None:
             raise falcon.HTTPNotFound()
@@ -49,12 +43,12 @@ class PhoneResource(object):
 
 
 app = falcon.API()
-phone = PhoneResource(config.INFOBRIGHT)
+phone = PhoneResource()
 app.add_route('/{phonenum}', phone)
 
 
 if __name__ == "__main__":
-    host = config.SERVER['host']
-    port = config.SERVER['port']
-    httpd = simple_server.make_server(host, port, app)
+    print "Starting server on", config.bind
+    host, port = config.bind.split(":")
+    httpd = simple_server.make_server(host, int(port), app)
     httpd.serve_forever()

@@ -1,0 +1,11 @@
+beautifulsoup4>=4.4.1
+Cython>=0.23.4
+falcon>=0.3.0
+gevent>=1.0.2
+greenlet>=0.4.9
+html5lib>=0.9999999
+MySQL-python>=1.2.5
+torndb>=0.3
+requests>=2.9.1
+gunicorn>=19.4.5
+ujson>=1.34
