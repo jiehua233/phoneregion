@@ -9,7 +9,6 @@ import sys
 import gzip
 import logging
 import argparse
-import os.path
 import gevent
 import torndb
 import requests
@@ -24,7 +23,6 @@ monkey.patch_all()
 logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     level=logging.INFO)
-root = os.path.dirname(os.path.abspath(__file__))
 db = torndb.Connection(**config.MYSQL)
 
 
